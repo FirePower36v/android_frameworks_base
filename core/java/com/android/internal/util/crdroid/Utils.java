@@ -131,7 +131,11 @@ public class Utils {
         }
         int cpuTempMultiplier = context.getResources().getInteger(
                 com.android.internal.R.integer.config_sysCPUTempMultiplier);
-        return value == "Error" ? "N/A" : String.format("%s", Integer.parseInt(value) / cpuTempMultiplier) + "°C";
+    
+        if (value == null || "Error".equals(value)) {
+            return "N/A";
+        }
+        return String.format("%s", Integer.parseInt(value) / cpuTempMultiplier) + "°C";
     }
     
     public static boolean fileExists(String filename) {
